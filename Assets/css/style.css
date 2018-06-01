@@ -1,5 +1,4 @@
-.vertical-center {
- display:flex;
- align-items:center;
-
+.answer {
+    padding:.5rem;
+    margin: .75rem;
 }

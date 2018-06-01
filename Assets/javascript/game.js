@@ -25,35 +25,40 @@ var question = {
         answer1:"1",
         answer2:"2",
         answer3:"3",
-        answer4:"4"
+        answer4:"4",
+        rightAnswer:""
     },
     question2: {
         question:"This is the next question",
         answer1:"5",
         answer2:"6",
         answer3:"7",
-        answer4:"8"
+        answer4:"8",
+        rightAnswer:""
     },
     question3: {
         question:"",
         answer1:"",
         answer2:"",
         answer3:"",
-        answer4:""
+        answer4:"",
+        rightAnswer:""
     },
     question4: {
         question:"",
         answer1:"",
         answer2:"",
         answer3:"",
-        answer4:""
+        answer4:"",
+        rightAnswer:""
     },
     question5: {
         question:"",
         answer1:"",
         answer2:"",
         answer3:"",
-        answer4:""
+        answer4:"",
+        rightAnswer:""
     },
 answerClicked:null
 
@@ -72,6 +77,7 @@ $("#intro").on ("click","#begin", function() {
 //answer 1
 $("#answers").on("click","#answer1",function() {
     alert("answer1");
+    
 });
 
 //answer 2

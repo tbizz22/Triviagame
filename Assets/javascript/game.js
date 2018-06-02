@@ -7,6 +7,8 @@ function timer() {
         if (timeLeft === -1) {
             clearTimeout(timerId);
             noAnswer();
+        } else if (game.answerClicked === true) {
+            clearTimeout(timerId);
         } else {
             $("#timer").html(timeLeft);
             timeLeft--
@@ -169,12 +171,14 @@ function drawQuestion(qnum) {
      
 }
 
-
+function showQuestionGrid() {
+    $("#questionGrid").removeClass("hide"); 
+}
 
 // Start the game
 $("#intro").on ("click","#begin", function() {
     $("#intro").addClass("hide");
-    $("#questionGrid").removeClass("hide");
+    showQuestionGrid();
     timer();
     drawQuestion(game.questions.question1);
 });
@@ -212,6 +216,7 @@ $("#answers").on("click","#answer4",function() {
 // core game behavior
 
 function gameLogic() {
+    game.answerClicked = true;
     if (game.answerClicked.correct === true) {
         game.correct++
         showResult(true);
@@ -223,7 +228,7 @@ function gameLogic() {
 
 function noAnswer () {
     showResult(noAnswer);
-    unanswered++;
+    game.unanswered++;
  }
 
 
@@ -253,4 +258,7 @@ function getImg(array) {
     gif = path + img;
     return gif
 };
+
+
+
 

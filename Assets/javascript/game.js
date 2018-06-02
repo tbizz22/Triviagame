@@ -6,7 +6,7 @@ function timer() {
     function countdown() {
         if (timeLeft === -1) {
             clearTimeout(timerId);
-            //put code here to end the round
+            noAnswer();
         } else {
             $("#timer").html(timeLeft);
             timeLeft--
@@ -14,13 +14,16 @@ function timer() {
     }
 }
 
-var uxdisplay = null;
+
+
 
 //Object
 var game = {
     correct: 0,
     incorrect: 0,
     unanswered: 0,
+    answerClicked: null,
+    currentQuestion: null,
     questions: {
         question1: {
             question: "What is the next question",
@@ -42,45 +45,88 @@ var game = {
             },
         },
         question2: {
-            question: "This is the next question",
-            answer1: "5",
-            answer2: "6",
-            answer3: "7",
-            answer4: "8",
-            rightAnswer: ""
+            question: "What is the next question",
+            answer1: {
+                value: "1",
+                correct: false
+            },                
+            answer2: {
+                value: "2",
+                correct: false
+            },
+            answer3: {
+                value: "3",
+                correct: false
+            },
+            answer4: {
+                value: "4",
+                correct: true
+            },
         },
         question3: {
-            question: "",
-            answer1: "",
-            answer2: "",
-            answer3: "",
-            answer4: "",
-            rightAnswer: ""
+            question: "What is the next question",
+            answer1: {
+                value: "1",
+                correct: false
+            },                
+            answer2: {
+                value: "2",
+                correct: false
+            },
+            answer3: {
+                value: "3",
+                correct: false
+            },
+            answer4: {
+                value: "4",
+                correct: true
+            },
         },
         question4: {
-            question: "",
-            answer1: "",
-            answer2: "",
-            answer3: "",
-            answer4: "",
-            rightAnswer: ""
+            question: "What is the next question",
+            answer1: {
+                value: "1",
+                correct: false
+            },                
+            answer2: {
+                value: "2",
+                correct: false
+            },
+            answer3: {
+                value: "3",
+                correct: false
+            },
+            answer4: {
+                value: "4",
+                correct: true
+            },
         },
         question5: {
-            question: "",
-            answer1: "",
-            answer2: "",
-            answer3: "",
-            answer4: "",
-            rightAnswer: ""
+            question: "What is the next question",
+            answer1: {
+                value: "1",
+                correct: false
+            },                
+            answer2: {
+                value: "2",
+                correct: false
+            },
+            answer3: {
+                value: "3",
+                correct: false
+            },
+            answer4: {
+                value: "4",
+                correct: true
+            },
         }
-    },
-    answerClicked: null,
-    currentQuestion: null,
-}
+    }   
+};
 
 var images = {
     win: ["office1.gif","office3.gif","office4.gif","office7.gif"],
-    lose: ["office10.gif","office9.gif","office8.gif","office6.gif","office5.gif"]
+    lose: ["office10.gif","office9.gif","office8.gif","office6.gif","office5.gif","office11.gif"],
+    none: ["none.gif"]
 };
 
 
@@ -139,7 +185,6 @@ $("#intro").on ("click","#begin", function() {
 //answer 1
 $("#answers").on("click","#answer1",function() {
     game.answerClicked = game.currentQuestion.answer1
-    console.log(game.answerClicked)
     gameLogic();
 });
 
@@ -164,6 +209,7 @@ $("#answers").on("click","#answer4",function() {
 
 
 
+// core game behavior
 
 function gameLogic() {
     if (game.answerClicked.correct === true) {
@@ -175,7 +221,30 @@ function gameLogic() {
     }
 };
 
+function noAnswer () {
+    showResult(noAnswer);
+    unanswered++;
+ }
 
+
+
+
+// display question result page
+var gif 
+var array
+function showResult(bool) {
+    if (bool === true) {
+        array = images.win
+    } else if (bool === false) {
+        array = images.lose
+    } else {
+        array = images.none
+    }
+    getImg(array);    
+    $("#qResult").attr("src",gif);
+    $("#questionGrid").addClass("hide");
+    $("#resultDiv").removeClass("hide");
+};
 
 // get img 
 function getImg(array) {
@@ -183,20 +252,5 @@ function getImg(array) {
     var img = array[(Math.floor(Math.random()*array.length))];
     gif = path + img;
     return gif
-}
+};
 
-
-// display result page
-var gif 
-var array
-function showResult(bool) {
-    if (bool === true) {
-        array = images.win
-    } else {
-        array = images.lose
-    }
-    getImg(array);    
-    $("#qResult").attr("src",gif);
-    $("#questionGrid").addClass("hide");
-    $("#resultDiv").removeClass("hide");
-}

@@ -249,6 +249,7 @@ function showResult(bool) {
     $("#qResult").attr("src",gif);
     $("#questionGrid").addClass("hide");
     $("#resultDiv").removeClass("hide");
+    hideResultDivTimed();
 };
 
 // get img 
@@ -258,6 +259,15 @@ function getImg(array) {
     gif = path + img;
     return gif
 };
+
+function hideResultDiv() {
+    $("#resultDiv").addClass("hide");
+}
+
+function hideResultDivTimed() {
+    setTimeout(hideResultDiv,5000);
+}
+
 
 
 

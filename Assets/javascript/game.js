@@ -28,7 +28,7 @@ var game = {
     currentQuestion: null,
     questions: {
         question1: {
-            question: "What is the next question",
+            question: "q1",
             answer1: {
                 value: "1",
                 correct: false
@@ -47,7 +47,7 @@ var game = {
             },
         },
         question2: {
-            question: "What is the next question",
+            question: "q2",
             answer1: {
                 value: "1",
                 correct: false
@@ -66,7 +66,7 @@ var game = {
             },
         },
         question3: {
-            question: "What is the next question",
+            question: "q3",
             answer1: {
                 value: "1",
                 correct: false
@@ -136,31 +136,6 @@ var images = {
 
 
 
-// // get the question
-// function getQuestion() {
-//     Object.keys(game.questions).forEach((key) => {
-//         game.questions[key] = game.currentQuestion;
-//         console.log(game.questions.key);
-//     });
-// };
-
-
-// function getQuestion() {
-//     Object.keys(game.questions).forEach((key) => {
-//         game.questions.currentQuestion = uxdisplay
-//     })
-
-// }
-
-// function getQuestion() {
-// for (var k in game.questions) {
-//     for (var q in k)
-//         $("#question").html(k[q]);
-
-//     console.log(k & "  " & game.questions[k]);
-// }
-// }
-
 function drawQuestion(qnum) {
     $("#question").html(qnum.question)
     $("#answer1").html(qnum.answer1.value);
@@ -168,6 +143,7 @@ function drawQuestion(qnum) {
     $("#answer3").html(qnum.answer3.value);
     $("#answer4").html(qnum.answer4.value);
     game.currentQuestion = qnum;
+    return game.currentQuestion;
      
 }
 
@@ -181,6 +157,7 @@ $("#intro").on ("click","#begin", function() {
     showQuestionGrid();
     timer();
     drawQuestion(game.questions.question1);
+    console.log(game.currentQuestion)
 });
 
 
@@ -224,6 +201,7 @@ function gameLogic() {
         game.incorrect++
         showResult(false);
     }
+    
 };
 
 function noAnswer () {
@@ -250,6 +228,8 @@ function showResult(bool) {
     $("#questionGrid").addClass("hide");
     $("#resultDiv").removeClass("hide");
     hideResultDivTimed();
+    // temp
+    incrementQ();
 };
 
 // get img 
@@ -271,4 +251,14 @@ function hideResultDivTimed() {
 
 
 
+
+// // increment question
+// function incrementQ() {
+// for (k in game.questions) {
+
+// }
+
+// console.log(game.currentQuestion);
+// game.currentQuestion = game.currentQuestion++;
+// }
 

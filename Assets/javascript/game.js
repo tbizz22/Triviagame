@@ -1,6 +1,3 @@
-
-
-
 //Object
 var game = {
     correct: 0,
@@ -9,6 +6,7 @@ var game = {
     answerClicked: null,
     response: null,
     currentQuestion: 0,
+    
     questions: [{
             question: "q1",
             answer1: {
@@ -86,8 +84,10 @@ var game = {
             },
         },
     ],
+    
 };
-var totalQuestions = game.questions.length
+var totalQuestions = game.questions.length;
+var questionNumber = 0;
 
 var images = {
     win: ["office1.gif", "office3.gif", "office4.gif", "office7.gif"],
@@ -102,21 +102,50 @@ var images = {
 
 function showQuestionGrid() {
     $("#questionGrid").removeClass("hide");
+    showFooter();
 }
 
 function hideQuestionGrid() {
     $("#questionGrid").addClass("hide");
+    hideFooter();
 }
+
+function showResultGrid() {
+    $("#resultDiv").removeClass("hide");
+};
+
 
 function hideResultDiv() {
     $("#resultDiv").addClass("hide");
     showQuestionGrid();
+    newTimer();
 }
 
 function hideResultDivTimed() {
     setTimeout(hideResultDiv, 5000);
 }
 
+function showFooter() {    
+    $("#qguide").removeClass("hide");
+    updateFooter();
+}
+
+function hideFooter() {
+    $("#qguide").addClass("hide")   ;
+}
+
+function updateFooter() {
+    questionNumber = questionNumber + 1;
+
+    $("#currentQuestion").html(questionNumber);
+    $("#totalQuestion").html(totalQuestions);
+}
+
+function newTimer () {
+    game.answerClicked = false;
+    $("#timer").html("10");
+    timer();
+}
 
 // Start the game
 $("#intro").on("click", "#begin", function () {
@@ -124,20 +153,21 @@ $("#intro").on("click", "#begin", function () {
     startGame();
 });
 
+// Show Question Progress
+
 
 
 
 function startGame() {
-    showQuestionGrid();
+    showQuestionGrid();    
     timer();
     drawQuestion(game.questions[game.currentQuestion]);
     console.log(game.currentQuestion)
 }
 
 function startRound() {
-    showQuestionGrid();
+    showQuestionGrid();    
     timer();
-    // drawQuestion(game.questions[game.currentQuestion]);
     console.log(game.currentQuestion)
 }
 
@@ -147,6 +177,7 @@ function startRound() {
 function timer() {
     var timeLeft = 9;
     var timerId = setInterval(countdown, 1000);
+    
 
     function countdown() {
         if (timeLeft === -1) {
@@ -234,8 +265,7 @@ function gameLogic() {
 function noAnswer() {
     showResult(noAnswer);
     game.unanswered++;
-}
-
+};
 
 
 
@@ -253,12 +283,11 @@ function showResult(bool) {
     }
     getImg(array);
     $("#qResult").attr("src", gif);
-    $("#questionGrid").addClass("hide");
-    $("#resultDiv").removeClass("hide");
+    hideQuestionGrid();
+    showResultGrid();
     hideResultDivTimed();
-    // temp
     incrementQuestion();
-    startRound();
+    //startRound();
 };
 
 // get img 
@@ -268,10 +297,4 @@ function getImg(array) {
     gif = path + img;
     return gif
 };
-
-
-
-
-
-
 

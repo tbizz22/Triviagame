@@ -17,7 +17,16 @@ function timer() {
 }
 
 
+/*  
+    if questionsAnswered >= questions.length
+        then display resulst
+    else if questionAnswered < questions.length
+        then setTimer(currentQuestion)
 
+
+    //setTimer
+
+*/
 
 //Object
 var game = {
@@ -26,13 +35,12 @@ var game = {
     unanswered: 0,
     answerClicked: null,
     currentQuestion: null,
-    questions: {
-        question1: {
+    questions: [{
             question: "q1",
             answer1: {
                 value: "1",
                 correct: false
-            },                
+            },
             answer2: {
                 value: "2",
                 correct: false
@@ -46,12 +54,12 @@ var game = {
                 correct: true
             },
         },
-        question2: {
+        {
             question: "q2",
             answer1: {
                 value: "1",
                 correct: false
-            },                
+            },
             answer2: {
                 value: "2",
                 correct: false
@@ -65,12 +73,12 @@ var game = {
                 correct: true
             },
         },
-        question3: {
+        {
             question: "q3",
             answer1: {
                 value: "1",
                 correct: false
-            },                
+            },
             answer2: {
                 value: "2",
                 correct: false
@@ -84,12 +92,12 @@ var game = {
                 correct: true
             },
         },
-        question4: {
-            question: "What is the next question",
+        {
+            question: "q4",
             answer1: {
                 value: "1",
                 correct: false
-            },                
+            },
             answer2: {
                 value: "2",
                 correct: false
@@ -103,37 +111,19 @@ var game = {
                 correct: true
             },
         },
-        question5: {
-            question: "What is the next question",
-            answer1: {
-                value: "1",
-                correct: false
-            },                
-            answer2: {
-                value: "2",
-                correct: false
-            },
-            answer3: {
-                value: "3",
-                correct: false
-            },
-            answer4: {
-                value: "4",
-                correct: true
-            },
-        }
-    }   
+
+    ],
 };
 
 var images = {
-    win: ["office1.gif","office3.gif","office4.gif","office7.gif"],
-    lose: ["office10.gif","office9.gif","office8.gif","office6.gif","office5.gif","office11.gif"],
+    win: ["office1.gif", "office3.gif", "office4.gif", "office7.gif"],
+    lose: ["office10.gif", "office9.gif", "office8.gif", "office6.gif", "office5.gif", "office11.gif"],
     none: ["none.gif"]
 };
 
 
 
-
+console.log(game.questions.length)
 
 
 function drawQuestion(qnum) {
@@ -144,19 +134,19 @@ function drawQuestion(qnum) {
     $("#answer4").html(qnum.answer4.value);
     game.currentQuestion = qnum;
     return game.currentQuestion;
-     
+
 }
 
 function showQuestionGrid() {
-    $("#questionGrid").removeClass("hide"); 
+    $("#questionGrid").removeClass("hide");
 }
 
 // Start the game
-$("#intro").on ("click","#begin", function() {
+$("#intro").on("click", "#begin", function () {
     $("#intro").addClass("hide");
     showQuestionGrid();
     timer();
-    drawQuestion(game.questions.question1);
+    drawQuestion(game.questions[0]);
     console.log(game.currentQuestion)
 });
 
@@ -164,25 +154,25 @@ $("#intro").on ("click","#begin", function() {
 
 // Which button is clicked?
 //answer 1
-$("#answers").on("click","#answer1",function() {
+$("#answers").on("click", "#answer1", function () {
     game.answerClicked = game.currentQuestion.answer1
     gameLogic();
 });
 
 //answer 2
-$("#answers").on("click","#answer2",function() {
+$("#answers").on("click", "#answer2", function () {
     game.answerClicked = game.currentQuestion.answer2
     gameLogic();
 });
 
 //answer 3
-$("#answers").on("click","#answer3",function() {
+$("#answers").on("click", "#answer3", function () {
     game.answerClicked = game.currentQuestion.answer3
     gameLogic();
 });
 
 //answer 4
-$("#answers").on("click","#answer4",function() {
+$("#answers").on("click", "#answer4", function () {
     game.answerClicked = game.currentQuestion.answer4
     gameLogic();
 });
@@ -196,25 +186,26 @@ function gameLogic() {
     game.answerClicked = true;
     if (game.answerClicked.correct === true) {
         game.correct++
-        showResult(true);
+            showResult(true);
     } else {
         game.incorrect++
-        showResult(false);
+            showResult(false);
     }
-    
+
 };
 
-function noAnswer () {
+function noAnswer() {
     showResult(noAnswer);
     game.unanswered++;
- }
+}
 
 
 
 
 // display question result page
-var gif 
+var gif
 var array
+
 function showResult(bool) {
     if (bool === true) {
         array = images.win
@@ -223,19 +214,19 @@ function showResult(bool) {
     } else {
         array = images.none
     }
-    getImg(array);    
-    $("#qResult").attr("src",gif);
+    getImg(array);
+    $("#qResult").attr("src", gif);
     $("#questionGrid").addClass("hide");
     $("#resultDiv").removeClass("hide");
     hideResultDivTimed();
     // temp
-    incrementQ();
+    // incrementQ();
 };
 
 // get img 
 function getImg(array) {
     var path = "Assets/images/"
-    var img = array[(Math.floor(Math.random()*array.length))];
+    var img = array[(Math.floor(Math.random() * array.length))];
     gif = path + img;
     return gif
 };
@@ -245,7 +236,7 @@ function hideResultDiv() {
 }
 
 function hideResultDivTimed() {
-    setTimeout(hideResultDiv,5000);
+    setTimeout(hideResultDiv, 5000);
 }
 
 
@@ -261,4 +252,3 @@ function hideResultDivTimed() {
 // console.log(game.currentQuestion);
 // game.currentQuestion = game.currentQuestion++;
 // }
-

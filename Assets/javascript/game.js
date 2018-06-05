@@ -8,78 +8,154 @@ var game = {
     currentQuestion: 0,
 
     questions: [{
-        question: "q1",
+        question: "Who does Michael accidentally hit with his car in the parking lot?",
         answer1: {
-            value: "1",
-            correct: false
+            value: "Meredith",
+            correct: true
         },
         answer2: {
-            value: "2",
+            value: "Phyllis",
             correct: false
         },
         answer3: {
-            value: "3",
+            value: "Kelly",
             correct: false
         },
         answer4: {
-            value: "4",
+            value: "Ryan",
+            correct: false
+        },
+    },
+    {
+        question: "On the night Pam got really drunk at the Dundies and kissed Jim, what did she win her Dundie for?",
+        answer1: {
+            value: "Longest engagement",
+            correct: false
+        },
+        answer2: {
+            value: "Whitest sneakers",
+            correct: true
+        },
+        answer3: {
+            value: "Tidiest desk",
+            correct: false
+        },
+        answer4: {
+            value: "Best candy",
+            correct: false
+        },
+    },
+    {
+        question: "What is the name of the company Ryan sets up that sends messages to all of your devices at once?",
+        answer1: {
+            value: "Twitter",
+            correct: false
+        },
+        answer2: {
+            value: "Grrowl",
+            correct: false
+        },
+        answer3: {
+            value: "Barkk",
+            correct: false
+        },
+        answer4: {
+            value: "Wuphf",
             correct: true
         },
     },
     {
-        question: "q2",
+        question: "According to Dwight, nostalgia is one of the greatest human weaknesses, second only to what?",
         answer1: {
-            value: "1",
+            value: "Fear of heights",
             correct: false
         },
         answer2: {
-            value: "2",
+            value: "Emotion",
             correct: false
         },
         answer3: {
-            value: "3",
+            value: "The eyes",
             correct: false
         },
         answer4: {
-            value: "4",
+            value: "The neck",
             correct: true
         },
     },
     {
-        question: "q3",
+        question: "What famous case is Toby a juror on?",
         answer1: {
-            value: "1",
+            value: "Zodiac Killer",
             correct: false
         },
         answer2: {
-            value: "2",
+            value: "Jeffery Dhamer",
             correct: false
         },
         answer3: {
-            value: "3",
-            correct: false
+            value: "The Scranton Strangler",
+            correct: true
         },
         answer4: {
-            value: "4",
-            correct: true
+            value: "The Golden State Killer",
+            correct: false
         },
     },
     {
-        question: "q4",
+        question: "What name does Dwight call Justin Bieber?",
         answer1: {
-            value: "1",
-            correct: false
+            value: "Justice Beaver",
+            correct: true
         },
         answer2: {
-            value: "2",
+            value: "Justice Blieber",
             correct: false
         },
         answer3: {
-            value: "3",
+            value: "Justine Believer",
             correct: false
         },
         answer4: {
-            value: "4",
+            value: "Justice B. Liver",
+            correct: false
+        },
+    },
+    {
+        question: "What is the name of Angela's cat, which Dwight kills by putting it in the freezer?",
+        answer1: {
+            value: "Snowball",
+            correct: false
+        },
+        answer2: {
+            value: "Bandit",
+            correct: false
+        },
+        answer3: {
+            value: "Sprinkles",
+            correct: true
+        },
+        answer4: {
+            value: "Mr. Meowgi",
+            correct: false
+        },
+    },
+    {
+        question: "When everyone tries to get Meredith to admit to being an alcoholic at the Moroccan Christmas party, what does she actually admit to being addicted to?",
+        answer1: {
+            value: "Sex",
+            correct: false
+        },
+        answer2: {
+            value: "Food",
+            correct: false
+        },
+        answer3: {
+            value: "Crack",
+            correct: false
+        },
+        answer4: {
+            value: "Porn",
             correct: true
         },
     },

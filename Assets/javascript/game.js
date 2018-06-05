@@ -88,6 +88,7 @@ var game = {
 };
 var totalQuestions = game.questions.length;
 var questionNumber = 0;
+var endGame = 0;
 
 var images = {
     win: ["office1.gif", "office3.gif", "office4.gif", "office7.gif"],
@@ -121,8 +122,18 @@ function hideResultDiv() {
     newTimer();
 }
 
+function hideResultDivNoT() {
+    $("#resultDiv").addClass("hide");
+    showQuestionGrid();
+    
+}
+
 function hideResultDivTimed() {
-    setTimeout(hideResultDiv, 5000);
+    if (endGame === 1) {
+        setTimeout(hideResultDivNoT, 3000);
+    } else {
+        setTimeout(hideResultDiv, 3000);
+    }
 }
 
 function showFooter() {    
@@ -136,7 +147,6 @@ function hideFooter() {
 
 function updateFooter() {
     questionNumber = questionNumber + 1;
-
     $("#currentQuestion").html(questionNumber);
     $("#totalQuestion").html(totalQuestions);
 }
@@ -197,12 +207,11 @@ function timer() {
 
 function incrementQuestion() {
     var index = game.questions.indexOf(game.currentQuestion);
-    if (this.index > (game.totalQuestions + 1)) {
-        // show end of game result screen
+    if (index === (totalQuestions - 1)) {
+        endGame = 1;
     } else {
         game.currentQuestion = game.questions[index + 1];
-        drawQuestion(game.currentQuestion)
-        // return game.currentQuestion;           
+        drawQuestion(game.currentQuestion);           
     }
 }
 
@@ -298,3 +307,33 @@ function getImg(array) {
     return gif
 };
 
+
+
+// // End the game Logic
+
+// function endGame() {
+// showGameScore();
+// hideFooter();
+// };
+
+// function updateGameScore () {
+//     $("#correctAnswer").html(game.correct);
+//     $("#incorrectAnswer").html(game.incorrect);
+//     $("#unanswered").html(game.unanswered);
+// };
+
+
+// function showGameScore() {
+// $("#gameScore").removeClass("hide");
+// updateGameScore();
+// hideQuestionGrid();
+
+// };
+
+// function hideGameScore() {
+
+// };
+
+// function resetGame() {
+
+// };

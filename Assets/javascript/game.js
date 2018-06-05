@@ -205,9 +205,9 @@ function hideResultDivNoT() {
 
 function hideResultDivTimed() {
     if (endGame === 1) {
-        setTimeout(hideResultDivNoT, 5000);
+        setTimeout(hideResultDivNoT, 3000);
     } else {
-        setTimeout(hideResultDiv, 5000);
+        setTimeout(hideResultDiv, 3000);
     }
 }
 

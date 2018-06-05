@@ -168,7 +168,7 @@ var endGame = 0;
 
 var images = {
     win: ["office1.gif", "office3.gif", "office4.gif", "office7.gif"],
-    lose: ["office10.gif", "office9.gif", "office8.gif", "office6.gif", "office5.gif", "office11.gif"],
+    lose: ["office10.gif", "office9.gif", "office8.gif", "office6.gif", "office5.gif", "office11.gif","office12.gif","office2.gif"],
     none: ["none.gif"]
 };
 
@@ -205,9 +205,9 @@ function hideResultDivNoT() {
 
 function hideResultDivTimed() {
     if (endGame === 1) {
-        setTimeout(hideResultDivNoT, 3000);
+        setTimeout(hideResultDivNoT, 5000);
     } else {
-        setTimeout(hideResultDiv, 3000);
+        setTimeout(hideResultDiv, 5000);
     }
 }
 
@@ -228,7 +228,7 @@ function updateFooter() {
 
 function newTimer() {
     game.answerClicked = false;
-    $("#timer").html("10");
+    $("#timer").html("20");
     timer();
 }
 
@@ -258,7 +258,7 @@ function startRound() {
 
 //timer function
 function timer() {
-    var timeLeft = 9;
+    var timeLeft = 19;
     var timerId = setInterval(countdown, 1000);
 
 
@@ -354,20 +354,25 @@ function noAnswer() {
 // display question result page
 var gif
 var array
+var result
 
 function showResult(bool) {
     if (bool === true) {
         array = images.win
+        result = "Correct!"
     } else if (bool === false) {
         array = images.lose
+        result = "Wrong!"
     } else {
         array = images.none
+        result = "Try to answer next time"
     }
     getImg(array);
     $("#qResult").attr({
                         "src": gif,
-                        "class": "img-responsive"
+                        "class": "img-responsive margintop"
                     });
+    $("#resultOutcome").html(result);
     hideQuestionGrid();
     showResultGrid();
     incrementQuestion();

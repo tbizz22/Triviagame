@@ -164,9 +164,7 @@ $("#intro").on("click", "#begin", function () {
 
 // Show Question Progress
 
-
-
-
+//Start Rounds & Game
 function startGame() {
     showQuestionGrid();
     timer();
@@ -290,7 +288,10 @@ function showResult(bool) {
         array = images.none
     }
     getImg(array);
-    $("#qResult").attr("src", gif);
+    $("#qResult").attr({
+                        "src": gif,
+                        "class": "img-responsive"
+                    });
     hideQuestionGrid();
     showResultGrid();
     incrementQuestion();

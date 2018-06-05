@@ -124,13 +124,12 @@ function hideResultDiv() {
 
 function hideResultDivNoT() {
     $("#resultDiv").addClass("hide");
-    showQuestionGrid();
-    
+    gameOver();
 }
 
 function hideResultDivTimed() {
     if (endGame === 1) {
-        setTimeout(hideResultDivNoT, 3000);
+        setTimeout(hideResultDivNoT, 3000);        
     } else {
         setTimeout(hideResultDiv, 3000);
     }
@@ -294,9 +293,8 @@ function showResult(bool) {
     $("#qResult").attr("src", gif);
     hideQuestionGrid();
     showResultGrid();
-    hideResultDivTimed();
     incrementQuestion();
-    //startRound();
+    hideResultDivTimed();       
 };
 
 // get img 
@@ -311,29 +309,29 @@ function getImg(array) {
 
 // // End the game Logic
 
-// function endGame() {
-// showGameScore();
-// hideFooter();
-// };
+function gameOver() {
+    showGameScore();
+    hideQuestionGrid();
+    hideFooter();
+};
 
-// function updateGameScore () {
-//     $("#correctAnswer").html(game.correct);
-//     $("#incorrectAnswer").html(game.incorrect);
-//     $("#unanswered").html(game.unanswered);
-// };
+function updateGameScore () {
+    $("#correctAnswer").html(game.correct);
+    $("#incorrectAnswer").html(game.incorrect);
+    $("#unanswered").html(game.unanswered);
+};
 
 
-// function showGameScore() {
-// $("#gameScore").removeClass("hide");
-// updateGameScore();
-// hideQuestionGrid();
+function showGameScore() {
+    $("#gameScore").removeClass("hide");
+    updateGameScore();
+    hideQuestionGrid();
+};
 
-// };
+function hideGameScore() {
 
-// function hideGameScore() {
+};
 
-// };
+function resetGame() {
 
-// function resetGame() {
-
-// };
+};

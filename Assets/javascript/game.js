@@ -169,7 +169,7 @@ var endGame = 0;
 var images = {
     win: ["office1.gif", "office3.gif", "office4.gif", "office7.gif","office13.gif"],
     lose: ["office10.gif", "office9.gif", "office8.gif", "office6.gif", "office5.gif", "office11.gif","office12.gif","office2.gif"],
-    none: ["none.gif"]
+    none: ["none.gif","none1.gif","none2.gif"]
 };
 
 

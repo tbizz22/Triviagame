@@ -6,85 +6,85 @@ var game = {
     answerClicked: null,
     response: null,
     currentQuestion: 0,
-    
+
     questions: [{
-            question: "q1",
-            answer1: {
-                value: "1",
-                correct: false
-            },
-            answer2: {
-                value: "2",
-                correct: false
-            },
-            answer3: {
-                value: "3",
-                correct: false
-            },
-            answer4: {
-                value: "4",
-                correct: true
-            },
+        question: "q1",
+        answer1: {
+            value: "1",
+            correct: false
         },
-        {
-            question: "q2",
-            answer1: {
-                value: "1",
-                correct: false
-            },
-            answer2: {
-                value: "2",
-                correct: false
-            },
-            answer3: {
-                value: "3",
-                correct: false
-            },
-            answer4: {
-                value: "4",
-                correct: true
-            },
+        answer2: {
+            value: "2",
+            correct: false
         },
-        {
-            question: "q3",
-            answer1: {
-                value: "1",
-                correct: false
-            },
-            answer2: {
-                value: "2",
-                correct: false
-            },
-            answer3: {
-                value: "3",
-                correct: false
-            },
-            answer4: {
-                value: "4",
-                correct: true
-            },
+        answer3: {
+            value: "3",
+            correct: false
         },
-        {
-            question: "q4",
-            answer1: {
-                value: "1",
-                correct: false
-            },
-            answer2: {
-                value: "2",
-                correct: false
-            },
-            answer3: {
-                value: "3",
-                correct: false
-            },
-            answer4: {
-                value: "4",
-                correct: true
-            },
+        answer4: {
+            value: "4",
+            correct: true
         },
+    },
+    {
+        question: "q2",
+        answer1: {
+            value: "1",
+            correct: false
+        },
+        answer2: {
+            value: "2",
+            correct: false
+        },
+        answer3: {
+            value: "3",
+            correct: false
+        },
+        answer4: {
+            value: "4",
+            correct: true
+        },
+    },
+    {
+        question: "q3",
+        answer1: {
+            value: "1",
+            correct: false
+        },
+        answer2: {
+            value: "2",
+            correct: false
+        },
+        answer3: {
+            value: "3",
+            correct: false
+        },
+        answer4: {
+            value: "4",
+            correct: true
+        },
+    },
+    {
+        question: "q4",
+        answer1: {
+            value: "1",
+            correct: false
+        },
+        answer2: {
+            value: "2",
+            correct: false
+        },
+        answer3: {
+            value: "3",
+            correct: false
+        },
+        answer4: {
+            value: "4",
+            correct: true
+        },
+    },
     ],
-    
+
 };
 var totalQuestions = game.questions.length;
 var questionNumber = 0;
@@ -129,19 +129,19 @@ function hideResultDivNoT() {
 
 function hideResultDivTimed() {
     if (endGame === 1) {
-        setTimeout(hideResultDivNoT, 3000);        
+        setTimeout(hideResultDivNoT, 3000);
     } else {
         setTimeout(hideResultDiv, 3000);
     }
 }
 
-function showFooter() {    
+function showFooter() {
     $("#qguide").removeClass("hide");
     updateFooter();
 }
 
 function hideFooter() {
-    $("#qguide").addClass("hide")   ;
+    $("#qguide").addClass("hide");
 }
 
 function updateFooter() {
@@ -150,7 +150,7 @@ function updateFooter() {
     $("#totalQuestion").html(totalQuestions);
 }
 
-function newTimer () {
+function newTimer() {
     game.answerClicked = false;
     $("#timer").html("10");
     timer();
@@ -168,14 +168,14 @@ $("#intro").on("click", "#begin", function () {
 
 
 function startGame() {
-    showQuestionGrid();    
+    showQuestionGrid();
     timer();
     drawQuestion(game.questions[game.currentQuestion]);
     console.log(game.currentQuestion)
 }
 
 function startRound() {
-    showQuestionGrid();    
+    showQuestionGrid();
     timer();
     console.log(game.currentQuestion)
 }
@@ -186,7 +186,7 @@ function startRound() {
 function timer() {
     var timeLeft = 9;
     var timerId = setInterval(countdown, 1000);
-    
+
 
     function countdown() {
         if (timeLeft === -1) {
@@ -210,7 +210,7 @@ function incrementQuestion() {
         endGame = 1;
     } else {
         game.currentQuestion = game.questions[index + 1];
-        drawQuestion(game.currentQuestion);           
+        drawQuestion(game.currentQuestion);
     }
 }
 
@@ -262,10 +262,10 @@ function gameLogic() {
     game.answerClicked = true;
     if (game.response.correct === true) {
         game.correct++
-            showResult(true);
+        showResult(true);
     } else {
         game.incorrect++
-            showResult(false);
+        showResult(false);
     }
 
 };
@@ -294,7 +294,7 @@ function showResult(bool) {
     hideQuestionGrid();
     showResultGrid();
     incrementQuestion();
-    hideResultDivTimed();       
+    hideResultDivTimed();
 };
 
 // get img 
@@ -315,7 +315,7 @@ function gameOver() {
     hideFooter();
 };
 
-function updateGameScore () {
+function updateGameScore() {
     $("#correctAnswer").html(game.correct);
     $("#incorrectAnswer").html(game.incorrect);
     $("#unanswered").html(game.unanswered);
@@ -329,9 +329,25 @@ function showGameScore() {
 };
 
 function hideGameScore() {
-
+    $("#gameScore").addClass("hide");
 };
 
 function resetGame() {
-
+    hideGameScore();
+    endGame = 0;
+    questionNumber = 0;
+    game.currentQuestion = 0;
+    game.unanswered = 0;
+    game.correct = 0;
+    game.incorrect = 0;
+    startGame();
 };
+
+
+$("#tryAgain").on("click", function (event) {
+    event.preventDefault();
+    resetGame();
+});
+
+
+

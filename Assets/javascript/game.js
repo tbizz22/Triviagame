@@ -370,7 +370,7 @@ function showResult(bool) {
     getImg(array);
     $("#qResult").attr({
                         "src": gif,
-                        "class": "img-responsive margintop"
+                        "class": "responsive-img margintop"
                     });
     $("#resultOutcome").html(result);
     hideQuestionGrid();
